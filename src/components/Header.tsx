@@ -11,37 +11,48 @@ const user = {
 };
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const logoutHandler = () => {};
+  const logoutHandler = () => {
+    setOpen(false);
+  };
   return (
-    <div className="flex justify-between p-2 font-bold bg-slate-950 text-white">
-      <div className="ml-2">Logo</div>
+    <div className=" flex justify-between p-5 font-bold bg-slate-950 text-white">
+      <div className="ml-2 uppercase tracking-wide ">logo </div>
       <div className="flex">
-        <Link to={"/home"} className="ml-4">
-          Home
+        <Link to={"/"} onClick={() => setOpen(false)} className=" tracking-wide ml-4">
+          HOME
         </Link>
-        <Link to={"/search"} className="ml-4 pt-1 text-lg ">
+        <Link to={"/search"} onClick={() => setOpen(false)} className="ml-4 pt-1 text-lg ">
           <IoMdSearch />
         </Link>
-        <Link to={"/order"} className="ml-4 pt-1 text-lg">
+        <Link to={"/cart"} onClick={() => setOpen(false)} className="ml-4 pt-1 text-lg">
           <IoBag />
         </Link>
         {user._id ? (
-          <>
-            <div onClick={() => setOpen((prev) => !prev)} className="ml-4 mr-2 pt-1 text-lg">
+          <div className=" flex flex-row-reverse ">
+            <div
+              onClick={() => setOpen((prev) => !prev)}
+              className=" cursor-pointer ml-4 mr-2 pt-1 text-lg"
+            >
               <CgProfile />
             </div>
-            <dialog open={open}>
-              <p onClick={logoutHandler}>
-                <IoIosLogOut />
-              </p>
-              {user.role === "admin" && (
-                <>
-                  <Link to="/admin/dashboard">Admin</Link>
-                  <Link to="/order">Order</Link>
-                </>
-              )}
-            </dialog>
-          </>
+
+            <div className=" z-10 relative drop-shadow-md select-none  ">
+              <dialog className=" -left-7 top-8 " open={open}>
+                {user.role === "admin" && (
+                  <div className=" p-2  ">
+                    <Link onClick={() => setOpen(false)} to="/admin/dashboard">Admin</Link> <br />
+                    <Link onClick={() => setOpen(false)} to="/order">Order</Link>
+                  </div>
+                )}
+                <p
+                  className=" cursor-pointer flex justify-center pb-2 "
+                  onClick={logoutHandler}
+                >
+                  <IoIosLogOut />
+                </p>
+              </dialog>
+            </div>
+          </div>
         ) : (
           <Link to={"/login"}>Login</Link>
         )}
