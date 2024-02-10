@@ -12,6 +12,7 @@ const Cart = lazy(() => import("./pages/Cart.tsx"));
 const Home = lazy(() => import("./pages/Home.tsx"));
 const Search = lazy(() => import("./pages/Search.tsx"));
 const Shipping = lazy(() => import("./pages/Shipping.tsx"));
+const Login = lazy(() => import("./pages/Login.tsx"));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
+      
       <Route
         path="cart"
         element={
@@ -35,9 +37,19 @@ const router = createBrowserRouter(
         }
       />
       <Route
+        path="login"
+        element={
+          <Suspense fallback={<Loader />}>
+            <Header />
+            <Login />
+          </Suspense>
+        }
+      />
+      <Route
         path="search"
         element={
           <Suspense fallback={<Loader />}>
+            <Header />
             <Search />
           </Suspense>
         }

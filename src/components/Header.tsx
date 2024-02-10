@@ -6,7 +6,7 @@ import { IoMdSearch } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 
 const user = {
-  _id: "12322",
+  _id: "",
   role: "admin",
 };
 const Header = () => {
@@ -18,16 +18,28 @@ const Header = () => {
     <div className=" flex justify-between p-5 font-bold bg-slate-950 text-white">
       <div className="ml-2 uppercase tracking-wide ">logo </div>
       <div className="flex">
-        <Link to={"/"} onClick={() => setOpen(false)} className=" tracking-wide ml-4">
+        <Link
+          to={"/"}
+          onClick={() => setOpen(false)}
+          className=" tracking-wide ml-4"
+        >
           HOME
         </Link>
-        <Link to={"/search"} onClick={() => setOpen(false)} className="ml-4 pt-1 text-lg ">
+        <Link
+          to={"/search"}
+          onClick={() => setOpen(false)}
+          className="ml-4 pt-1 text-lg "
+        >
           <IoMdSearch />
         </Link>
-        <Link to={"/cart"} onClick={() => setOpen(false)} className="ml-4 pt-1 text-lg">
+        <Link
+          to={"/cart"}
+          onClick={() => setOpen(false)}
+          className="ml-4 pt-1 text-lg"
+        >
           <IoBag />
         </Link>
-        {user._id ? (
+        {user?._id ? (
           <div className=" flex flex-row-reverse ">
             <div
               onClick={() => setOpen((prev) => !prev)}
@@ -40,8 +52,13 @@ const Header = () => {
               <dialog className=" -left-7 top-8 " open={open}>
                 {user.role === "admin" && (
                   <div className=" p-2  ">
-                    <Link onClick={() => setOpen(false)} to="/admin/dashboard">Admin</Link> <br />
-                    <Link onClick={() => setOpen(false)} to="/order">Order</Link>
+                    <Link onClick={() => setOpen(false)} to="/admin/dashboard">
+                      Admin
+                    </Link>{" "}
+                    <br />
+                    <Link onClick={() => setOpen(false)} to="/order">
+                      Order
+                    </Link>
                   </div>
                 )}
                 <p
@@ -54,7 +71,9 @@ const Header = () => {
             </div>
           </div>
         ) : (
-          <Link to={"/login"}>Login</Link>
+          <Link className="ml-4" to={"/login"}>
+            Login
+          </Link>
         )}
       </div>
     </div>
