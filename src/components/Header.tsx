@@ -6,7 +6,7 @@ import { IoMdSearch } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 
 const user = {
-  _id: "",
+  _id: "34334",
   role: "admin",
 };
 const Header = () => {
