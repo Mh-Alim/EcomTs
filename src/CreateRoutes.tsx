@@ -91,7 +91,6 @@ const router = createBrowserRouter(
         path="/admin/product"
         element={
           <Suspense fallback={<Loader />}>
-            <Header />
             <Product />
           </Suspense>
         }

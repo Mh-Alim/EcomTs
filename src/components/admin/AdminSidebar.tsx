@@ -70,9 +70,8 @@ const appsLiData = [
 ];
 const AdminSidebar = () => {
   const location = useLocation();
-  console.log("main ", location.pathname);
   return (
-    <div className=" p-5 h-[100vh] overflow-y-scroll no-scrollbar ">
+    <div className=" w-80 p-5 h-[90vh] ">
       <h1 className=" mb-5 font-medium text-2xl  ">Logo</h1>
       <div className=" p-2 mb-6 ">
         <h2 className=" uppercase tracking-widest mb-5 ">Dashboard</h2>
