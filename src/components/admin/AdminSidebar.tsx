@@ -77,7 +77,12 @@ const AdminSidebar = () => {
         <h2 className=" uppercase tracking-widest mb-5 ">Dashboard</h2>
         <ul className=" list-none ">
           {dashboardLiData.map((item) => (
-            <Li text={item.text} url={item.url} Icon={item.Icon} />
+            <Li
+              key={item.url}
+              text={item.text}
+              url={item.url}
+              Icon={item.Icon}
+            />
           ))}
         </ul>
       </div>
@@ -85,7 +90,12 @@ const AdminSidebar = () => {
         <h2 className=" uppercase tracking-widest mb-5 ">Charts</h2>
         <ul className=" list-none ">
           {chartsLiData.map((item) => (
-            <Li text={item.text} url={item.url} Icon={item.Icon} />
+            <Li
+              key={item.url}
+              text={item.text}
+              url={item.url}
+              Icon={item.Icon}
+            />
           ))}
         </ul>
       </div>
@@ -93,7 +103,12 @@ const AdminSidebar = () => {
         <h2 className=" uppercase tracking-widest mb-5 ">Apps</h2>
         <ul className=" list-none ">
           {appsLiData.map((item) => (
-            <Li text={item.text} url={item.url} Icon={item.Icon} />
+            <Li
+              key={item.url}
+              text={item.text}
+              url={item.url}
+              Icon={item.Icon}
+            />
           ))}
         </ul>
       </div>
@@ -112,7 +127,7 @@ const Li = ({ text, Icon, url }: LiPropType) => {
   return (
     <li
       className={` ${
-        location.pathname === url
+        location.pathname.includes(url)
           ? `bg-blue-600 text-white`
           : `bg-white text-black`
       }  mb-3 group transition-all rounded-lg  p-3`}

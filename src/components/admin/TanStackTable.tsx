@@ -9,13 +9,22 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 
-function TanStackTable<T>(columns: ColumnDef<T>[], data: T[]) {
+function TanStackTable<T>(
+  columns: ColumnDef<T>[],
+  data: T[],
+  showPagination: boolean = false
+) {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [pageIndex, setPageIndex] = useState<number>(0);
   const table = useReactTable({
     columns,
     data,
     state: {
       sorting,
+      pagination: {
+        pageSize: 6,
+        pageIndex: pageIndex,
+      },
     },
     onSortingChange: setSorting,
 
@@ -68,7 +77,7 @@ function TanStackTable<T>(columns: ColumnDef<T>[], data: T[]) {
                   {row.getVisibleCells().map((cell) => {
                     return (
                       <td
-                        className="p-5 border-y-slate-200 border-y-2  text-center  "
+                        className="p-5 border-y-slate-200 border-y-2   text-center  "
                         key={cell.id}
                       >
                         {flexRender(
@@ -83,6 +92,29 @@ function TanStackTable<T>(columns: ColumnDef<T>[], data: T[]) {
             })}
         </tbody>
       </table>
+
+      {showPagination && (
+        <div className=" mt-10 flex justify-center items-center ">
+          <button
+            className=" py-1 px-3 mx-2 bg-blue-500 text-white rounded-lg disabled:bg-slate-300 "
+            disabled={!table.getCanPreviousPage()}
+            onClick={() => setPageIndex((prev) => prev - 1)}
+          >
+            Prev
+          </button>
+          <p>
+            {table.getState().pagination.pageIndex + 1} of{" "}
+            {table.getPageCount()}
+          </p>
+          <button
+            className=" py-1 px-3 mx-2 bg-blue-500 text-white rounded-lg disabled:bg-slate-300 "
+            disabled={!table.getCanNextPage()}
+            onClick={() => setPageIndex((prev) => prev + 1)}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }

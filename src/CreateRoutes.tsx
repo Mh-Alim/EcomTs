@@ -6,7 +6,6 @@ import {
 
 import { lazy, Suspense } from "react";
 import Loader from "./components/Loader.tsx";
-import AdminSidebar from "./components/admin/AdminSidebar.tsx";
 
 const Header = lazy(() => import("./components/Header.tsx"));
 const Cart = lazy(() => import("./pages/Cart.tsx"));
@@ -15,11 +14,21 @@ const Search = lazy(() => import("./pages/Search.tsx"));
 const Shipping = lazy(() => import("./pages/Shipping.tsx"));
 const Login = lazy(() => import("./pages/Login.tsx"));
 
-// Admin Dashboard Routes
+// Admin Dashboard
 const Dashboard = lazy(() => import("./pages/admin/Dashboard.tsx"));
 const Product = lazy(() => import("./pages/admin/Product.tsx"));
 const Customer = lazy(() => import("./pages/admin/Customer.tsx"));
 const Transaction = lazy(() => import("./pages/admin/Transaction.tsx"));
+
+// Admin Management
+
+const NewProduct = lazy(() => import("./pages/admin/Mangement/NewProduct.tsx"));
+const ProductManagement = lazy(
+  () => import("./pages/admin/Mangement/ProductManagement.tsx")
+);
+const TransactionManagement = lazy(
+  () => import("./pages/admin/Mangement/TransactionManagement.tsx")
+);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -99,7 +108,6 @@ const router = createBrowserRouter(
         path="/admin/customer"
         element={
           <Suspense fallback={<Loader />}>
-            <Header />
             <Customer />
           </Suspense>
         }
@@ -108,8 +116,34 @@ const router = createBrowserRouter(
         path="/admin/transaction"
         element={
           <Suspense fallback={<Loader />}>
-            <Header />
             <Transaction />
+          </Suspense>
+        }
+      />
+
+      {/* Mangement  */}
+
+      <Route
+        path="/admin/product/new"
+        element={
+          <Suspense fallback={<Loader />}>
+            <NewProduct />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/admin/product/:id"
+        element={
+          <Suspense fallback={<Loader />}>
+            <ProductManagement />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/admin/transaction/:id"
+        element={
+          <Suspense fallback={<Loader />}>
+            <TransactionManagement />
           </Suspense>
         }
       />
