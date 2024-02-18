@@ -153,7 +153,7 @@ const Dashboard = () => {
               Gender Ratio
             </h1>
             <div className=" relative flex flex-col justify-between items-center ">
-              <DoughnutChart dataset={[12, 30]} />
+              <DoughnutChart bgColor={["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"]} legend={true} labels={["Male","Female"]} dataset={[12, 30]} />
               <BiMaleFemale className=" absolute top-[46%] left-[46%] text-3xl text-slate-500 " />
             </div>
           </div>

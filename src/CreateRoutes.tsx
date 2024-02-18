@@ -7,6 +7,7 @@ import {
 import { lazy, Suspense } from "react";
 import Loader from "./components/Loader.tsx";
 
+
 const Header = lazy(() => import("./components/Header.tsx"));
 const Cart = lazy(() => import("./pages/Cart.tsx"));
 const Home = lazy(() => import("./pages/Home.tsx"));
@@ -30,6 +31,21 @@ const TransactionManagement = lazy(
   () => import("./pages/admin/Mangement/TransactionManagement.tsx")
 );
 
+
+// admin charts route
+
+const BarCharts = lazy(() => import("./pages/admin/Charts/BarCharts.tsx"));
+const PieCharts = lazy(() => import("./pages/admin/Charts/PieCharts.tsx"));
+const LineCharts = lazy(() => import("./pages/admin/Charts/LineCharts.tsx"));
+
+
+// Admin app route
+
+const StopWatch =  lazy(() => import("./pages/admin/App/StopWatch.tsx")) ;
+const Coupon =  lazy(() => import("./pages/admin/App/Coupon.tsx")) ;
+const Toss =  lazy(() => import("./pages/admin/App/Toss.tsx")) ;
+
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -42,7 +58,6 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-
       <Route
         path="cart"
         element={
@@ -79,9 +94,7 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-
       {/* Admin Routes  */}
-
       {/* <Route path="/admin">
           <Suspense fallback={<Loader />}>
             <AdminSidebar />
@@ -95,7 +108,6 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-
       <Route
         path="/admin/product"
         element={
@@ -120,9 +132,7 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-
       {/* Mangement  */}
-
       <Route
         path="/admin/product/new"
         element={
@@ -147,6 +157,60 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
+      // charts
+      <Route
+        path="/admin/chart/bar"
+        element={
+          <Suspense fallback={<Loader />}>
+            <BarCharts />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/admin/chart/pie"
+        element={
+          <Suspense fallback={<Loader />}>
+            <PieCharts />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/admin/chart/line"
+        element={
+          <Suspense fallback={<Loader />}>
+            <LineCharts />
+          </Suspense>
+        }
+      />
+
+
+      {/* Apps  */}
+      <Route
+        path="/admin/app/stopwatch"
+        element={
+          <Suspense fallback={<Loader />}>
+            <StopWatch />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/admin/app/coupon"
+        element={
+          <Suspense fallback={<Loader />}>
+            <Coupon />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/admin/app/toss"
+        element={
+          <Suspense fallback={<Loader />}>
+            <Toss />
+          </Suspense>
+        }
+      />
+
+
     </>
   )
 );

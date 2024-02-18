@@ -41,12 +41,12 @@ const chartsLiData = [
   },
   {
     text: "Pie",
-    url: "/admin/pie",
+    url: "/admin/chart/pie",
     Icon: <FaChartPie />,
   },
   {
     text: "Line",
-    url: "/admin/line",
+    url: "/admin/chart/line",
     Icon: <FaChartLine />,
   },
 ];
